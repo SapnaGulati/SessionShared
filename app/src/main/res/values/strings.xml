@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SharedPreferenceSession</string>
+    <string name="password">Enter your password</string>
+    <string name="user_name">Enter your user-name</string>
+    <string name="log_in">Log-in</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="day">day</string>
+    <string name="month">month</string>
+    <string name="year">year</string>
+    <string name="state">state</string>
+    <string name="city">city</string>
+    <string name="country">country</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="new_user_log_in">New User... Log-in</string>
+    <string name="already_have_an_account_sign_up">Already have an account... Sign-up</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
