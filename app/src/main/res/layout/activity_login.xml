@@ -17,6 +17,8 @@
         android:layout_marginTop="150dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="10dp"
+        android:maxLines="1"
+        android:maxLength="20"
         android:inputType="text"/>
 
     <EditText
@@ -27,6 +29,8 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:padding="10dp"
+        android:maxLines="1"
+        android:maxLength="6"
         android:inputType="numberPassword" />
 
     <Button

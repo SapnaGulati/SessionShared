@@ -4,14 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.PersistableBundle
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class SplashScreen: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+class SplashScreen : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash_screen)
+
         Handler().postDelayed( {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }, 5000)
     }

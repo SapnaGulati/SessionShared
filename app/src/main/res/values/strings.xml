@@ -11,10 +11,11 @@
     <string name="city">city</string>
     <string name="country">country</string>
     <string name="mobile_number">Mobile Number</string>
-    <string name="new_user_log_in">New User... Log-in</string>
-    <string name="already_have_an_account_sign_up">Already have an account... Sign-up</string>
+    <string name="new_user_log_in">Already have an account… Log-in</string>
+    <string name="already_have_an_account_sign_up">New User… Sign-up</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="log_out">Log-out</string>
 </resources>
