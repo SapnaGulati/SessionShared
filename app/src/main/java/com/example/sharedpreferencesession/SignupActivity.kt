@@ -1,39 +1,36 @@
 package com.example.sharedpreferencesession
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.fasterxml.jackson.databind.ObjectMapper
+import java.io.File
+import java.io.IOException
 
 class SignupActivity : AppCompatActivity() {
     private val SHARED_PREFS = "shared_prefs"
-    private val NAME_KEY = "name_key"
-    private val PASSWORD_KEY = "password_key"
-    lateinit var sName: String
-    lateinit var sPass: String
+    private val map: HashMap<String, String> = hashMapOf()
+    private val mapKey = "map1"
+    private lateinit var sharedPreferences: SharedPreferences
+    private var mapper = ObjectMapper()
+    lateinit var name: TextView
+    lateinit var pass: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
         val login = findViewById<TextView>(R.id.login)
         val signbtn = findViewById<Button>(R.id.signbtn)
-        val name = findViewById<EditText>(R.id.name)
-        val pass = findViewById<EditText>(R.id.pass)
-        val day = findViewById<EditText>(R.id.day)
-        val month = findViewById<EditText>(R.id.month)
-        val year = findViewById<EditText>(R.id.year)
-        val mobile = findViewById<EditText>(R.id.mobile)
-        val city = findViewById<EditText>(R.id.city)
-        val state = findViewById<EditText>(R.id.state)
-        val country = findViewById<EditText>(R.id.country)
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-        sName = sharedPreferences.getString(NAME_KEY, null).toString()
-        sPass = sharedPreferences.getString(PASSWORD_KEY, null).toString()
+
+        name = findViewById<View>(R.id.name) as EditText
+        pass = findViewById<View>(R.id.pass) as EditText
 
         login.setOnClickListener {
             val i = Intent(this, LoginActivity::class.java)
@@ -42,32 +39,35 @@ class SignupActivity : AppCompatActivity() {
         }
 
         signbtn.setOnClickListener {
-            val username = name.text.toString()
-            val password = pass.text.toString()
-            val day = day.text.toString()
-            val month = month.text.toString()
-            val year = year.text.toString()
-            val mobile = mobile.text.toString()
-            val city = city.text.toString()
-            val state = state.text.toString()
-            val country = country.text.toString()
-            val editor:SharedPreferences.Editor = sharedPreferences.edit()
-
-            editor.putString(NAME_KEY, username)
-            editor.putString(PASSWORD_KEY, password)
-            editor.putString("day", day)
-            editor.putString("month", month)
-            editor.putString("year", year)
-            editor.putString("mobile", mobile)
-            editor.putString("city", city)
-            editor.putString("state", state)
-            editor.putString("country", country)
-            editor.apply()
-            editor.commit()
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            saveLocal()
         }
     }
+
+    private fun saveLocal() {
+        val mName = name.text.toString().trim()
+        val mPass = pass.text.toString().trim()
+        when {
+            mName.isEmpty() -> {
+                name.error = "*required"
+                name.requestFocus()
+            }
+            mPass.isEmpty() -> {
+                pass.error = "*required"
+                pass.requestFocus()
+            }
+            else -> {
+                map[mName] = mPass
+                try {
+                    mapper.writeValue(File(getExternalFilesDir(null), "result.json"), map)
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                Toast.makeText(applicationContext, "Account Created Successfully!!! Log-in to continue...", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }
