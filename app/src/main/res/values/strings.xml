@@ -18,4 +18,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="log_out">Log-out</string>
+    <string name="title">Movies App</string>
+    <string name="api_key">dd05a3971bda331641d65bfd7776ccb0</string>
 </resources>
