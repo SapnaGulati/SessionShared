@@ -14,10 +14,7 @@ import java.io.File
 import java.io.IOException
 
 class SignupActivity : AppCompatActivity() {
-    private val SHARED_PREFS = "shared_prefs"
     private val map: HashMap<String, String> = hashMapOf()
-    private val mapKey = "map1"
-    private lateinit var sharedPreferences: SharedPreferences
     private var mapper = ObjectMapper()
     lateinit var name: TextView
     lateinit var pass: TextView
@@ -69,5 +66,4 @@ class SignupActivity : AppCompatActivity() {
             }
         }
     }
-
 }
