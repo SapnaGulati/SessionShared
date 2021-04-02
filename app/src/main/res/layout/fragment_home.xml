@@ -29,11 +29,14 @@
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="2dp"
+        android:layout_alignBottom="@+id/recyclerView"
         android:background="@android:drawable/progress_indeterminate_horizontal"
         android:indeterminate="true"
         android:indeterminateBehavior="repeat"
         android:indeterminateTint="@color/white"
+        android:outlineAmbientShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         android:scaleY="5" />
 
 </RelativeLayout>
