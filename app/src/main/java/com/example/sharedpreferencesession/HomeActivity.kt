@@ -69,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
+                    supportFragmentManager.beginTransaction().remove(fragment3).commit()
                     if (savedInstanceState == null) {
                         replaceFragment(fragment1)
                         supportActionBar?.title = "Home Fragment"
@@ -76,11 +77,13 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_dashboard -> {
+                    supportFragmentManager.beginTransaction().remove(fragment1).commit()
                     replaceFragment(fragment2)
                     supportActionBar?.title = "DashBoard Fragment"
                     true
                 }
                 R.id.navigation_notifications -> {
+                    supportFragmentManager.beginTransaction().remove(fragment2).commit()
                     replaceFragment(fragment3)
                     supportActionBar?.title = "Notification Fragment"
                     true
@@ -91,7 +94,10 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.container, fragment)
+            if (fragment != null) {
+                supportFragmentManager.popBackStack()
+            }
+            add(R.id.container, fragment)
             addToBackStack(null)
             commit()
         }
